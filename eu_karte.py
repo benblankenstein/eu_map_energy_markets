@@ -62,8 +62,12 @@ capacity_color_map = {
 
 # Streamlit App Layout
 st.title('European Energy Markets Analysis')
+st.markdown("""
+This interactive application compares the design of electricity markets in different European countries. The maps are based on the results of a paper by the Forschungsstelle für Energiewirtschaft e. V. (FfE). The electricity market designs are analysed for different criteria and markets (bidding zones + capacity mechanism, intraday market, balancing services, forward markets). This is summarised in an overall score. A low score indicates that the electricity market design is similar to that of Germany. A high score indicates a strong deviation from the German electricity market design. The Capacity Mechanisms in Europe map shows the different approaches to capacity mechanisms.
+Select a criterion from the drop-down menu to update the map view.
+""")
 
-selected_metric = st.selectbox(
+selected_metric = st.sidebar.selectbox(
     'Select a metric to display:',
     options=[
         'Bidding zones + capacity mechanism',
@@ -76,11 +80,10 @@ selected_metric = st.selectbox(
     index=4
 )
 
-hover_data = {key: False for key in df.columns}
+hover_data = {key: True for key in df.columns}
 hover_data[selected_metric] = True
 
 if selected_metric == "Capacity mechanisms in Europe":
-    # Verwende die Farbcodierung für die Kapazitätsmechanismen
     fig = px.choropleth(
         df,
         locations="Region compared to Germany",
@@ -91,8 +94,16 @@ if selected_metric == "Capacity mechanisms in Europe":
         color_discrete_map=capacity_color_map,
         title="Capacity Mechanisms in Europe",
     )
+    st.markdown("""
+    **Kapazitätsmechanismen Farbcodes:**
+    - Blau: Energy-Only-Market
+    - Orange: Strategic reserve
+    - Grün: Tender for new capacity
+    - Rot: Decentralized obligation
+    - Lila: Central buyer
+    - Braun: Targeted capacity payment
+    """)
 else:
-    # Standardmäßige kontinuierliche Farbcodierung verwenden
     fig = px.choropleth(
         df,
         locations="Region compared to Germany",
