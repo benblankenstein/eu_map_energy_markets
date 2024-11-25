@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# Daten laden
+# Laden der Daten
 data = {
     "Region compared to Germany": [
         "Estonia", "Latvia", "Lithuania", "Belgium", "Bulgaria", "Denmark",
@@ -61,10 +61,17 @@ capacity_color_map = {
 }
 
 # Streamlit App Layout
-st.title('European Energy Markets Analysis')
+st.title('European Energy Markets Analysis - Test')
 st.markdown("""
-This interactive application compares the design of electricity markets in different European countries. The maps are based on the results of a paper by the Forschungsstelle für Energiewirtschaft e. V. (FfE). The electricity market designs are analysed for different criteria and markets (bidding zones + capacity mechanism, intraday market, balancing services, forward markets). This is summarised in an overall score. A low score indicates that the electricity market design is similar to that of Germany. A high score indicates a strong deviation from the German electricity market design. The Capacity Mechanisms in Europe map shows the different approaches to capacity mechanisms.
+This interactive application compares the design of electricity markets in different European countries. 
+The maps are based on the results of a paper by the Forschungsstelle für Energiewirtschaft e. V. (FfE). 
+The electricity market designs are analysed for different criteria and markets (bidding zones + capacity mechanism, intraday market, balancing services, forward markets). 
+This is summarised in an overall score. A low score indicates that the electricity market design is similar to that of Germany. 
+A high score indicates a strong deviation from the German electricity market design. 
+The Capacity Mechanisms in Europe map shows the different approaches to capacity mechanisms.
 Select a criterion from the drop-down menu to update the map view.
+
+[Read the full paper here.](https://www.ffe.de/wp-content/uploads/2022/09/GSM20_Paper_G0105_European-Electricity-Markets_Ganz.pdf)
 """)
 
 selected_metric = st.sidebar.selectbox(
@@ -94,6 +101,14 @@ if selected_metric == "Capacity mechanisms in Europe":
         color_discrete_map=capacity_color_map,
         title="Capacity Mechanisms in Europe",
     )
+    fig.update_layout(
+        legend=dict(
+            orientation="h",  # horizontale Ausrichtung
+            x=0.5,  # Zentriert die Legende
+            xanchor="center",
+            y=-0.3  # Positioniert sie unterhalb der Karte
+        )
+    )
 
 else:
     fig = px.choropleth(
@@ -105,6 +120,14 @@ else:
         hover_data=hover_data,
         color_continuous_scale=[(0, "green"), (0.5, "yellow"), (1, "red")],
         title=f"{selected_metric} in Europe",
+    )
+    fig.update_layout(
+        coloraxis_colorbar=dict(
+            orientation='h',
+            x=0.5,
+            xanchor='center',
+            y=-0.3
+        )
     )
 
 fig.update_geos(
@@ -118,7 +141,7 @@ fig.update_geos(
 
 fig.update_layout(
     margin={"r": 0, "t": 50, "l": 0, "b": 0},
-    height=800  # Setze die Höhe der Plot-Figur
+    height=600
 )
 
-st.plotly_chart(fig)
+st.plotly_chart(fig, use_container_width=True)
