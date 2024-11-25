@@ -94,15 +94,7 @@ if selected_metric == "Capacity mechanisms in Europe":
         color_discrete_map=capacity_color_map,
         title="Capacity Mechanisms in Europe",
     )
-    st.markdown("""
-    **Kapazitätsmechanismen Farbcodes:**
-    - Blau: Energy-Only-Market
-    - Orange: Strategic reserve
-    - Grün: Tender for new capacity
-    - Rot: Decentralized obligation
-    - Lila: Central buyer
-    - Braun: Targeted capacity payment
-    """)
+
 else:
     fig = px.choropleth(
         df,
