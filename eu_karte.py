@@ -61,7 +61,7 @@ capacity_color_map = {
 }
 
 # Streamlit App Layout
-st.title('European Energy Markets Analysis - Test')
+st.title('European Energy Markets Analysis')
 st.markdown("""
 - Based on the results of a paper by the Forschungsstelle für Energiewirtschaft e. V. (FfE)
 - Analysed for different criteria and markets (bidding zones + capacity mechanism, intraday market, balancing services, forward markets)
