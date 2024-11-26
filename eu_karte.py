@@ -86,8 +86,9 @@ selected_metric = st.sidebar.selectbox(
     index=4
 )
 
-# Hover-Daten anpassen, damit nur die ausgewählte Metrik angezeigt wird
+# Hover-Daten anpassen, damit nur die Überschrift und die ausgewählte Kategorie angezeigt werden
 hover_data = {selected_metric: True}
+fig = None
 
 if selected_metric == "Capacity mechanisms in Europe":
     fig = px.choropleth(
@@ -95,7 +96,8 @@ if selected_metric == "Capacity mechanisms in Europe":
         locations="Region compared to Germany",
         locationmode="country names",
         color=selected_metric,
-        hover_data=hover_data,
+        hover_name="Region compared to Germany",  # Zeigt die Region als Überschrift
+        hover_data=hover_data,  # Zeigt nur die ausgewählte Kategorie
         color_discrete_map=capacity_color_map,
         title="Capacity Mechanisms in Europe",
     )
@@ -114,7 +116,8 @@ else:
         locations="Region compared to Germany",
         locationmode="country names",
         color=selected_metric,
-        hover_data=hover_data,
+        hover_name="Region compared to Germany",  # Zeigt die Region als Überschrift
+        hover_data=hover_data,  # Zeigt nur die ausgewählte Kategorie
         color_continuous_scale=[(0, "green"), (0.5, "yellow"), (1, "red")],
         title=f"{selected_metric} in Europe",
     )
