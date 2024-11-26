@@ -63,13 +63,12 @@ capacity_color_map = {
 # Streamlit App Layout
 st.title('European Energy Markets Analysis - Test')
 st.markdown("""
-This interactive application compares the design of electricity markets in different European countries. 
-The maps are based on the results of a paper by the Forschungsstelle für Energiewirtschaft e. V. (FfE). 
-The electricity market designs are analysed for different criteria and markets (bidding zones + capacity mechanism, intraday market, balancing services, forward markets). 
-This is summarised in an overall score. A low score indicates that the electricity market design is similar to that of Germany. 
-A high score indicates a strong deviation from the German electricity market design. 
-The Capacity Mechanisms in Europe map shows the different approaches to capacity mechanisms.
-Select a criterion from the drop-down menu to update the map view.
+- Based on the results of a paper by the Forschungsstelle für Energiewirtschaft e. V. (FfE)
+- Analysed for different criteria and markets (bidding zones + capacity mechanism, intraday market, balancing services, forward markets)
+- Summarised in an overall score
+- A low score indicates that the electricity market design is similar to that of Germany
+- A high score indicates a strong deviation from the German electricity market design
+- The Capacity Mechanisms in Europe map shows the different approaches to capacity mechanisms
 
 [Read the full paper here.](https://www.ffe.de/wp-content/uploads/2022/09/GSM20_Paper_G0105_European-Electricity-Markets_Ganz.pdf)
 """)
