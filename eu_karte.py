@@ -86,8 +86,11 @@ selected_metric = st.sidebar.selectbox(
     index=4
 )
 
-hover_data = {key: True for key in df.columns}
-hover_data[selected_metric] = True
+# Hover-Daten anpassen, damit nur die ausgewählte Metrik angezeigt wird
+hover_data = {
+    "Region compared to Germany": True,
+    selected_metric: True
+}
 
 if selected_metric == "Capacity mechanisms in Europe":
     fig = px.choropleth(
